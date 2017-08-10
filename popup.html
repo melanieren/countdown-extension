@@ -1,0 +1,38 @@
+<!doctype html>
+<html>
+<head>
+
+<link rel="stylesheet" type="text/css" href="popup.css">
+
+<title>Countdown</title>
+
+</head>
+<body>
+
+<h1>Countdown</h1>
+
+<input type="button" value="Add a new event!" id="createEvent">
+
+<form id="newEventForm">
+  Event Name: <input type="text" id="evName"><br><br>
+  Start Date: <input type="date" id="evDate"><br><br>
+  Start Time: <br><input type="time" id="evTime"><br>
+</form>
+
+<div class="container">
+  <input type="button" value="Hide" id="hide">
+  <input type="button" value="Clear" id="clear">
+  <input type="button" value="Submit" id="add">
+</div>
+
+<h4>Event List:</h4>
+
+<div id="emptyList"><p>You currently have no events to count down to &#9785;</p></div>
+
+<ul id="eventList"></ul>
+
+<div id="err"></div>
+
+</body>
+<script src="popup.js"></script>
+</html>
