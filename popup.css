@@ -51,7 +51,7 @@ ul li {
   margin: 10px;
 }
 
-#add {
+#add, #hide, #clear {
   position: relative;
   display: none;
   background-color: #b6ccc5;
@@ -61,36 +61,6 @@ ul li {
   padding: 5px; 
   margin-right: auto;
   margin-left: auto;
-  width: 64px;
-  font-size: 10px;
-}
-
-#hide {
-  position: relative;
-  display: none;
-  background-color: #b6ccc5;
-  color: #ffffff;
-  border-radius: 5px;
-  border: none;
-  padding: 5px; 
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 10px;
-  width: 64px;
-  font-size: 10px;
-}
-
-#clear {
-  position: relative;
-  display: none;
-  background-color: #b6ccc5;
-  color: #ffffff;
-  border-radius: 5px;
-  border: none;
-  padding: 5px; 
-  margin-right: auto;
-  margin-left: auto;
-  margin-bottom: 10px;
   width: 64px;
   font-size: 10px;
 }
