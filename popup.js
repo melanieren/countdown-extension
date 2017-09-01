@@ -29,35 +29,43 @@ document.getElementById("add").onclick = function() {
   var timerLine = document.createElement("p");
   var text = document.getElementById("evName").value;
 
+  var hourInDay = 24;
+  var minInHour = 60;
+  var secInMin = 60;
+  var millisecInSec = 1000;
+
+  var countDownDate = document.getElementById("evDate").value;
+  var countDownTime = Date.parse(countDownDate);
+  var offset = new Date().getTimezoneOffset();
+  var eventTime = document.getElementById("evTime").value;
+  var timeSplit = eventTime.split(":");
+  var timeMillisec = (timeSplit[0] * minInHour * secInMin * millisecInSec) + (timeSplit[1] * secInMin * millisecInSec);
+
+  var now = new Date().getTime(); 
+  var distance = countDownTime - now + (offset * secInMin * millisecInSec) + timeMillisec; 
+
+  // Check for valid inputs
+
   if (text === "") { 
     document.getElementById("err").innerHTML = "Please enter a valid event name!";  
-  } else { 
-
+  } else if (distance < 0) { 
+    document.getElementById("err").innerHTML = "The date entered is in the past. Please enter a date and time in the future!";
+    return;
+  } else if (isNaN(distance)) {
+    document.getElementById("err").innerHTML = "Please enter a valid date and time!";
+    return;
+  } else {
     // Create the countdown timer
-
-    var hourInDay = 24;
-    var minInHour = 60;
-    var secInMin = 60;
-    var millisecInSec = 1000;
-
-    var countDownDate = document.getElementById("evDate").value;
-    var countDownTime = Date.parse(countDownDate);
-    var offset = new Date().getTimezoneOffset();
-    var eventTime = document.getElementById("evTime").value;
-    var timeSplit = eventTime.split(":");
-    var timeMillisec = (timeSplit[0] * minInHour * secInMin * millisecInSec) + (timeSplit[1] * secInMin * millisecInSec);
 
     var timer = setInterval(function() {
       var now = new Date().getTime(); 
       var distance = countDownTime - now + (offset * secInMin * millisecInSec) + timeMillisec; 
 
-      if (distance < 0) {
+      if (distance <= 0) {
         clearInterval(timer);
         eventLine.innerHTML = "<li>" + text + ":" + "</li>";
         timerLine.innerHTML = "Made it!";
-      } else if (isNaN(distance)) {
-        clearInterval(timer);
-        document.getElementById("err").innerHTML = "Please enter a valid date and time!";
+        return;
       } else {
         eventLine.innerHTML = "<li>" + text + ":" + "</li>";
         var days = Math.floor(distance / (hourInDay * minInHour * secInMin * millisecInSec));
